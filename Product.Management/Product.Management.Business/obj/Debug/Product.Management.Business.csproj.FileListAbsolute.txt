@@ -1,0 +1,9 @@
+C:\Users\semih.kalinli\source\repos\Product.Management\Product.Management.Business\bin\Debug\Product.Management.Business.dll
+C:\Users\semih.kalinli\source\repos\Product.Management\Product.Management.Business\bin\Debug\Product.Management.Business.pdb
+C:\Users\semih.kalinli\source\repos\Product.Management\Product.Management.Business\bin\Debug\Product.Management.Data.dll
+C:\Users\semih.kalinli\source\repos\Product.Management\Product.Management.Business\bin\Debug\Product.Management.Data.pdb
+C:\Users\semih.kalinli\source\repos\Product.Management\Product.Management.Business\obj\Debug\Product.Management.Business.csprojAssemblyReference.cache
+C:\Users\semih.kalinli\source\repos\Product.Management\Product.Management.Business\obj\Debug\Product.Management.Business.csproj.CoreCompileInputs.cache
+C:\Users\semih.kalinli\source\repos\Product.Management\Product.Management.Business\obj\Debug\Product.Management.Business.csproj.CopyComplete
+C:\Users\semih.kalinli\source\repos\Product.Management\Product.Management.Business\obj\Debug\Product.Management.Business.dll
+C:\Users\semih.kalinli\source\repos\Product.Management\Product.Management.Business\obj\Debug\Product.Management.Business.pdb

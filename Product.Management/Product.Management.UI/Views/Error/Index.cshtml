@@ -1,0 +1,13 @@
+﻿@model Product.Management.UI.Models.ErrorModel
+@{
+    ViewBag.Title = Model.ErrorTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model.ExceptionDetail != null)
+{
+<h1>  @Model.ErrorTitle</h1>
+<a>@Response.StatusCode -</a>
+<a>@Model.ExceptionDetail.Message</a>
+}

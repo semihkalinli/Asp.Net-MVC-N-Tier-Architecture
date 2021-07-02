@@ -1,0 +1,129 @@
+﻿@model Product.Management.UI.ViewModels.ProductViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-3 mt-3 font-size-18">Yeni Ürün Ekle</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+        <!-- Start Form validation row -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title-desc">
+
+                        </p>
+                        @if (ViewBag.Response != "")
+                        {
+                            <div>
+                                @Html.Raw(ViewBag.Response)
+                            </div>}
+                    <form class="needs-validation" method="post" novalidate action="Product/ProductFormEdit">
+                        <input type="text" name="Id" value="@Model.Product.Id" hidden>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="validationCustom01" class="form-label">Kategori</label>
+                                    <select id="Category" name="CategoryId" class="form-select" onchange="getSubcategories();" required>
+                                        <option value="0">Lütfen seçiniz.</option>
+                                        @foreach (var item in Model.Categories)
+                                        {
+                                            if (item.Id == Model.Product.CategoryId)
+                                            {
+                                                <option selected value="@item.Id">@item.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="validationCustom01" class="form-label">Alt Kategori</label>
+                                    <select id="Subcategory" name="SubcategoryId" class="form-select" required>
+                                        @foreach (var item in Model.Subcategories)
+                                        {
+                                            if (item.Id == Model.Product.SubcategoryId)
+                                            {
+                                                <option selected value="@item.Id">@item.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="validationCustom01" class="form-label">Ürün Adı</label>
+                                    <input type="text" class="form-control" name="Name" placeholder="Başlık" value="@Model.Product.Name" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="validationCustom01" class="form-label">Ürün Fiyatı</label>
+                                    <input type="text" class="form-control" name="Price" placeholder="100" value="@Model.Product.Price" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="validationCustom01" class="form-label">Ürün KDV Oranı</label>
+                                    <input type="text" class="form-control" name="KdvRate" placeholder="0-100 arası değer giriniz." value="@Model.Product.KdvRate" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" type="submit">Güncelle</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                <!-- end card -->
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div> <!-- container-fluid -->
+</div>
+
+@section _scripts{
+    <script>
+        function getSubcategories() {
+            var categoryId = $('#Category').val();
+            $.get("/Product/GetSubcategories?id=" + categoryId, function (data, status) {
+                var Subcategories = '';
+                $(data).each(function (index, element) {
+                    Subcategories = Subcategories + '<option value="' + element.Id + '">   ' + element.Name + ' </option>'
+                });
+                var subcategoriesList = $('#Subcategory')
+                subcategoriesList.empty();
+                subcategoriesList.append(Subcategories);
+
+            });
+        }
+    </script>
+}
+

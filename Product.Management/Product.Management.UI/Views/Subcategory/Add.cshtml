@@ -1,0 +1,74 @@
+﻿@model Product.Management.UI.ViewModels.SubcategoryViewModel
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-3 mt-3 font-size-18">Yeni Alt Kategori Ekle</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+        <!-- Start Form validation row -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title-desc">
+
+                        </p>
+                        @if (ViewBag.Response != "")
+                        {
+                            <div>
+                                @Html.Raw(ViewBag.Response)
+                            </div>}
+                        <form class="needs-validation" method="post" novalidate action="Subcategory/SubcategoryFormAdd">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="validationCustom01" class="form-label">Alt Kategori Adı</label>
+                                        <input type="text" class="form-control" name="Name" placeholder="Başlık" value="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="validationCustom01" class="form-label">Üst Kategori</label>
+                                        <select name="CategoryId" class="form-select" required>
+                                            @foreach (var item in Model.Categories)
+                                            {
+                                              <option value="@item.Id">@item.Name</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="validationCustom01" class="form-label">Kısa Açıklama</label>
+                                        <textarea name="Description" class="form-control"> </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" type="submit">Ekle</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- end card -->
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div> <!-- container-fluid -->
+</div>
+

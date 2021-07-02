@@ -1,0 +1,63 @@
+﻿@model Product.Management.UI.ViewModels.CategoryViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-3 mt-3 font-size-18">Yeni Kategori Ekle</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+        <!-- Start Form validation row -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title-desc">
+
+                        </p>
+                        @if (ViewBag.Response != "")
+                        {
+                            <div>
+                                @Html.Raw(ViewBag.Response)
+                            </div>
+                            }
+                    <form class="needs-validation" method="post" novalidate action="Category/CategoryFormEdit">
+                        <input type="text" name="Id"  value="@Model.Category.Id" hidden>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="validationCustom01" class="form-label">Kategori Adı</label>
+                                    <input type="text" class="form-control" name="Name" placeholder="Başlık" value="@Model.Category.Name" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="validationCustom01" class="form-label">Kısa Açıklama</label>
+                                    <textarea name="Description" class="form-control">@Model.Category.Description </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" type="submit">Ekle</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                <!-- end card -->
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+    </div> <!-- container-fluid -->
+</div>

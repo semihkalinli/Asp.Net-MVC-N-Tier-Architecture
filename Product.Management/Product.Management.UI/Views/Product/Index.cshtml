@@ -1,0 +1,95 @@
+﻿@model Product.Management.UI.ViewModels.ProductViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <a href="/urun-ekle" type="button" class="btn btn-success w-lg waves-effect waves-light mt-2 mb-2">Yeni Ürün Ekle</a>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="validationCustom01" class="form-label">Kategori</label>
+                    <select id="category" class="form-select" onchange="CategoryChange();" required>
+                        <option value="0">Tümü</option>
+                        @foreach (var item in Model.Categories)
+                        {
+                            if (item.Id.ToString() == ViewBag.CategoryId)
+                            {
+                                <option selected value="@item.Id">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="validationCustom01" class="form-label">Alt Kategori</label>
+                    <select id="subcategory" class="form-select" onchange="SubcategoryChange();" required>
+                        <option value="0">Tümü</option>
+                        @foreach (var item in Model.Subcategories)
+                        {
+                            if (item.Id.ToString() == ViewBag.SubcategoryId)
+                            {
+                                <option selected value="@item.Id">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Ürünler</h4>
+                        <p class="card-title-desc">
+                            Ürün düzenleme ekranı
+                        </p>
+                        <table id="table" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Ürün Adı</th>
+                                    <th>Fiyatı</th>
+                                    <th>KDV</th>
+                                    <th>İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+            </div> <!-- end col -->
+        </div>
+    </div>
+</div>
+@section _scripts{
+    <script src="~/Scripts/products/datatable.js"></script>
+    <script>
+        function CategoryChange() {
+            var categoryId = $('#category').val();
+            location.href = "/urunler?catId=" + categoryId;
+        }
+        function SubcategoryChange() {
+            var categoryId = $('#category').val();
+            var subcategoryId = $('#subcategory').val();
+            location.href = "/urunler?catId=" + categoryId + "&subId=" + subcategoryId;
+        }
+        var catId=@ViewBag.CategoryId
+        var subcatId=@ViewBag.SubcategoryId
+    
+    </script>
+}
